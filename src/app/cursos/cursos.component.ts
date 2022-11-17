@@ -11,15 +11,23 @@ import { CursosService } from './curso.service';
 export class CursosComponent implements OnInit {
 
   cursos: string[] = []
-  cursosService: CursosService;
+  //cursosService: CursosService;
 
-  constructor(private _cursosService: CursosService) {
+  constructor(private cursosService: CursosService) {
     //this.cursosService = new CursosService();
-    this.cursosService = _cursosService;
+    //this.cursosService = _cursosService;
    }
 
   ngOnInit() {
     this.cursos = this.cursosService.getCursos();
+
+    CursosService.criouNovoCurso.subscribe(
+      //sintaxe do ES2015 não é tpescript
+      //arrowfunction
+      //curso => console.log(curso)
+      curso => this.cursos.push(curso)
+
+    );
 
   }
 
